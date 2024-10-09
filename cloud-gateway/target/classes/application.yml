@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Api-gateway
+cloud:
+  gateway:
+    routes:
+      - id: UserDone-Service
+        uri: http://localhost:9002
+        predicates:
+          - Path=/users/**
+      - id: department-Service
+        uri: http://localhost:9001
+        predicates:
+          - Path=/departments/**
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: 'http://localhost:8761/eureka/'
+    registerWithEureka: true
+    fetchRegistry: true
+  instance:
+    hostname: localhost
+
+server:
+ port: 9191
